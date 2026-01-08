@@ -12,32 +12,8 @@ The dataset that we used in this case contains 4 tables:
 In SQL, we use the dataset to:
 
 **Analyze Transaction**
-1. Identify the month with the highest transaction volume in 2021
 
-    a. To show total transactions per month and sorted from largest to smallest transactions
-
-         ```
-          SELECT SUM(after_discount) total_transaksi,
-             MONTH(order_date) month_order
-          FROM order_detail
-          WHERE is_valid = 1
-          AND YEAR(order_date) = '2021'
-          GROUP BY MONTH(order_date)
-          ORDER BY SUM(after_discount) DESC`
-
-
-    b. To show total transactions across all months in 2021
-       
-         SELECT SUM (after_discount) total_transaksi, 
-              MONTH(order_date)month_order
-          FROM order_detail
-          WHERE is_valid = 1 
-          AND YEAR (order_date) = '2021'
-          GROUP BY MONTH(order_date)
-          ORDER BY MONTH(order_date) ASC`
-
-
-2. Identify category with highest sales in 2022
+1. Identify category with highest sales in 2022
 
 
     a. Showing transaction value per category in 2022
@@ -55,7 +31,7 @@ In SQL, we use the dataset to:
            SELECT SUM(after_discount)total_nilai_transaksi22 
            FROM order_detail`
 
-3. Show transaction value growth (2021-2022) based on product category
+2. Show transaction value growth (2021-2022) based on product category
 
    a. Create a temporary table with CTE to display data that can be used to compare the development of transaction values ​​per category from 2021-2022
 
@@ -108,7 +84,7 @@ In SQL, we use the dataset to:
 
 * using the COALESCE method so that NULL data can be handled by returning another value
   
-4. Show top 5 payment method in 2022
+3. Show top 5 payment method in 2022
    ```
    WITH top_5 AS(
      SELECT COUNT (DISTINCT od.idOrder) total_payment,
@@ -122,7 +98,7 @@ In SQL, we use the dataset to:
    FROM top_5
    ORDER BY top_5.total_payment DESC
 
-5. Sorting brand name based on the transaction value in Mobiles & Tablets category
+4. Sorting brand name based on the transaction value in Mobiles & Tablets category
    ```
    SELECT 
     CASE
